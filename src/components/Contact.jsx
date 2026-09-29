@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Mail, Phone, Send, MapPin, Sparkles, CheckCircle2, Copy, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import GithubIcon from './GithubIcon';
@@ -39,28 +40,51 @@ export default function Contact({ onShowToast }) {
 
     setSubmitting(true);
 
-    setTimeout(() => {
-      setSubmitting(false);
+    const SERVICE_ID  = 'service_l68phql';
+    const TEMPLATE_ID = 'template_644sw5f';
+    const PUBLIC_KEY  = '9eQJC21nIPzGIkuEP';
 
-      // Trigger celebratory confetti
-      try {
-        confetti({
-          particleCount: 90,
-          spread: 70,
-          origin: { y: 0.7 },
-          colors: ['#8b5cf6', '#6366f1', '#3b82f6', '#38bdf8']
-        });
-      } catch (err) {
-        // Safe fallback
-      }
+    emailjs
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name:  formData.name,
+          from_email: formData.email,
+          subject:    formData.subject || '(No subject)',
+          message:    formData.message,
+        },
+        PUBLIC_KEY
+      )
+      .then(() => {
+        setSubmitting(false);
 
-      if (onShowToast) {
-        onShowToast("Thank you, Manikanda! Your message has been sent successfully.");
-      }
+        // Trigger celebratory confetti
+        try {
+          confetti({
+            particleCount: 90,
+            spread: 70,
+            origin: { y: 0.7 },
+            colors: ['#8b5cf6', '#6366f1', '#3b82f6', '#38bdf8']
+          });
+        } catch (err) {
+          // Safe fallback
+        }
 
-      // Reset form
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 800);
+        if (onShowToast) {
+          onShowToast("Message sent! I'll get back to you soon.");
+        }
+
+        // Reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      })
+      .catch((error) => {
+        setSubmitting(false);
+        console.error('EmailJS error:', error);
+        if (onShowToast) {
+          onShowToast("Oops! Something went wrong. Please try again or email me directly.");
+        }
+      });
   };
 
   return (
