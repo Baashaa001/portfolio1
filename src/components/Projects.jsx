@@ -105,12 +105,13 @@ export default function Projects() {
               {/* Card Footer: View Project Links */}
               <div className="px-6 sm:px-7 pb-6 pt-2 border-t border-white/5 flex items-center justify-between">
                 <a
-                  href={project.github}
+                  href={project.liveUrl || project.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple hover:text-white group/link transition-colors"
                 >
-                  <span>View Project</span>
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Live Demo</span>
                   <ArrowRight className="w-4 h-4 group-link-hover:translate-x-1 transition-transform" />
                 </a>
 

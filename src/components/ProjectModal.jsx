@@ -100,6 +100,17 @@ export default function ProjectModal({ project, onClose }) {
           >
             Close
           </button>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span>Live Demo</span>
+            </a>
+          )}
           <a
             href={project.github}
             target="_blank"

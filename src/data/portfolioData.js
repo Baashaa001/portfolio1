@@ -92,6 +92,7 @@ export const projects = [
     image: chatboxImg,
     tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Socket.io"],
     github: "https://github.com/Baashaa001",
+    liveUrl: "https://chat-app-five-blush-kixp4w2zj4.vercel.app/",
     featured: true,
     highlights: [
       "Real-time bidirectional messaging via Socket.io",
@@ -109,6 +110,7 @@ export const projects = [
     image: quickshowImg,
     tags: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs"],
     github: "https://github.com/Baashaa001",
+    liveUrl: "https://quickshow.vercel.app/",
     featured: true,
     highlights: [
       "Interactive visual theater seat map with real-time status",
@@ -126,6 +128,7 @@ export const projects = [
     image: spotifyImg,
     tags: ["React.js", "Vite", "Tailwind CSS", "React Router"],
     github: "https://github.com/Baashaa001",
+    liveUrl: "https://spotify-ten-lac-91.vercel.app/",
     featured: true,
     highlights: [
       "Pixel-perfect responsive dark music player interface",
